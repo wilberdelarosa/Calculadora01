@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Calculadora01.MainPage">
+
+    <ScrollView>
+        <Grid
+            Padding="5,0"
+            ColumnSpacing="1"
+            RowSpacing="1">
+
+            <!-- Definimos las filas y columnas -->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Etiqueta para mostrar la operación actual -->
+            <Label
+                x:Name="lblOperacion"
+                Grid.Row="0"
+                Grid.ColumnSpan="4"
+                FontSize="20"
+                HorizontalTextAlignment="End"
+                VerticalTextAlignment="Center"
+                Text="Operación actual"
+                TextColor="Gray" />
+
+            <!-- Etiqueta para mostrar el resultado -->
+            <Label
+                x:Name="result"
+                Grid.Row="1"
+                Grid.ColumnSpan="4"
+                BackgroundColor="White"
+                FontSize="48"
+                HorizontalTextAlignment="End"
+                VerticalTextAlignment="Center"
+                Text="0"
+                TextColor="BlueViolet" />
+
+            <!-- Botones de la calculadora -->
+            <Button Grid.Row="2" 
+             Grid.Column="0" 
+             Grid.ColumnSpan="2" 
+             Text="C" FontSize="36" 
+             BackgroundColor="LightGray" 
+             Clicked="Limpiar" />
+            
+            
+            <Button Grid.Row="2" Grid.Column="2" Text="x2" FontSize="36" BackgroundColor="LightGray" Clicked="Duplicar" />
+            <Button Grid.Row="2" Grid.Column="3" Text="/" FontSize="36" BackgroundColor="BlueViolet" TextColor="White" Clicked="OperadorPresionado" />
+
+            <Button Grid.Row="3" Grid.Column="0" Text="7" FontSize="36" BackgroundColor="White" TextColor="DarkGray" Clicked="NumeroPresionado" />
+            <Button Grid.Row="3" Grid.Column="1" Text="8" FontSize="36" BackgroundColor="White" TextColor="DarkGray" Clicked="NumeroPresionado" />
+            <Button Grid.Row="3" Grid.Column="2" Text="9" FontSize="36" BackgroundColor="White" TextColor="DarkGray" Clicked="NumeroPresionado" />
+            <Button Grid.Row="3" Grid.Column="3" Text="*" FontSize="36" BackgroundColor="BlueViolet" TextColor="White" Clicked="OperadorPresionado" />
+
+            <Button Grid.Row="4" Grid.Column="0" Text="4" FontSize="36" BackgroundColor="White" TextColor="DarkGray" Clicked="NumeroPresionado" />
+            <Button Grid.Row="4" Grid.Column="1" Text="5" FontSize="36" BackgroundColor="White" TextColor="DarkGray" Clicked="NumeroPresionado" />
+            <Button Grid.Row="4" Grid.Column="2" Text="6" FontSize="36" BackgroundColor="White" TextColor="DarkGray" Clicked="NumeroPresionado" />
+            <Button Grid.Row="4" Grid.Column="3" Text="-" FontSize="36" BackgroundColor="BlueViolet" TextColor="White" Clicked="OperadorPresionado" />
+
+            <Button Grid.Row="5" Grid.Column="0" Text="1" FontSize="36" BackgroundColor="White" TextColor="DarkGray" Clicked="NumeroPresionado" />
+            <Button Grid.Row="5" Grid.Column="1" Text="2" FontSize="36" BackgroundColor="White" TextColor="DarkGray" Clicked="NumeroPresionado" />
+            <Button Grid.Row="5" Grid.Column="2" Text="3" FontSize="36" BackgroundColor="White" TextColor="DarkGray" Clicked="NumeroPresionado" />
+            <Button Grid.Row="5" Grid.Column="3" Text="+" FontSize="36" BackgroundColor="BlueViolet" TextColor="White" Clicked="OperadorPresionado" />
+
+            <Button Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" Text="0" FontSize="36" BackgroundColor="White" TextColor="DarkGray" Clicked="NumeroPresionado" />
+            <Button Grid.Row="6" Grid.Column="3" Text="=" FontSize="36" BackgroundColor="BlueViolet" TextColor="White" Clicked="Calcular" />
+        </Grid>
+    </ScrollView>
+</ContentPage>
