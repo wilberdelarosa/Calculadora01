@@ -1,84 +1,90 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Calculadora01.MainPage">
-
+             x:Class="Calculadora01.MainPage"
+             Title="Prime Video"
+             BackgroundColor="Black">
+    <!-- Usamos un ScrollView principal para que todo sea desplazable -->
     <ScrollView>
-        <Grid
-            Padding="5,0"
-            ColumnSpacing="1"
-            RowSpacing="1">
+        <VerticalStackLayout Padding="10" Spacing="10">
 
-            <!-- Definimos las filas y columnas -->
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="2*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+            <!-- Menú Superior (Todo, Películas, Series) -->
+            <HorizontalStackLayout HorizontalOptions="CenterAndExpand" Spacing="20">
+                <Label Text="Todo" TextColor="White" FontSize="14" />
+                <Label Text="Películas" TextColor="White" FontSize="14" />
+                <Label Text="Series" TextColor="White" FontSize="14" />
+            </HorizontalStackLayout>
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+            <!-- Banner Superior -->
+            <Image x:Name="banner1" 
+                   Source="banner1.png" 
+                   Aspect="AspectFill" 
+                   HeightRequest="200" />
 
-            <!-- Etiqueta para mostrar la operación actual -->
-            <Label
-                x:Name="lblOperacion"
-                Grid.Row="0"
-                Grid.ColumnSpan="4"
-                FontSize="20"
-                HorizontalTextAlignment="End"
-                VerticalTextAlignment="Center"
-                Text="Operación actual"
-                TextColor="Gray" />
+            <!-- Título del Banner -->
+            <Label Text="La otra BODA"
+                   TextColor="White"
+                   FontAttributes="Bold"
+                   FontSize="24"
+                   HorizontalOptions="Start" />
 
-            <!-- Etiqueta para mostrar el resultado -->
-            <Label
-                x:Name="result"
-                Grid.Row="1"
-                Grid.ColumnSpan="4"
-                BackgroundColor="White"
-                FontSize="48"
-                HorizontalTextAlignment="End"
-                VerticalTextAlignment="Center"
-                Text="0"
-                TextColor="BlueViolet" />
+            <!-- Subtítulo (Ej: Período de prueba gratis) -->
+            <Label Text="Período de prueba gratis de Prime"
+                   TextColor="White"
+                   FontSize="12"
+                   HorizontalOptions="Start" />
 
-            <!-- Botones de la calculadora -->
-            <Button Grid.Row="2" 
-             Grid.Column="0" 
-             Grid.ColumnSpan="2" 
-             Text="C" FontSize="36" 
-             BackgroundColor="LightGray" 
-             Clicked="Limpiar" />
-            
-            
-            <Button Grid.Row="2" Grid.Column="2" Text="x2" FontSize="36" BackgroundColor="LightGray" Clicked="Duplicar" />
-            <Button Grid.Row="2" Grid.Column="3" Text="/" FontSize="36" BackgroundColor="BlueViolet" TextColor="White" Clicked="OperadorPresionado" />
+            <!-- Sección: Películas que te recomendamos -->
+            <Label Text="Prime – Películas que te recomendamos"
+                   TextColor="White"
+                   FontAttributes="Bold"
+                   FontSize="18"
+                   Margin="0,10,0,0" />
 
-            <Button Grid.Row="3" Grid.Column="0" Text="7" FontSize="36" BackgroundColor="White" TextColor="DarkGray" Clicked="NumeroPresionado" />
-            <Button Grid.Row="3" Grid.Column="1" Text="8" FontSize="36" BackgroundColor="White" TextColor="DarkGray" Clicked="NumeroPresionado" />
-            <Button Grid.Row="3" Grid.Column="2" Text="9" FontSize="36" BackgroundColor="White" TextColor="DarkGray" Clicked="NumeroPresionado" />
-            <Button Grid.Row="3" Grid.Column="3" Text="*" FontSize="36" BackgroundColor="BlueViolet" TextColor="White" Clicked="OperadorPresionado" />
+            <!-- Scroll horizontal de recomendaciones -->
+            <ScrollView Orientation="Horizontal">
+                <HorizontalStackLayout Spacing="10">
+                    <!-- Sustituye cada Source con tu imagen real -->
+                    <Image Source="movie1.png"
+                           WidthRequest="120"
+                           HeightRequest="180"
+                           Aspect="AspectFill" />
+                    <Image Source="movie2.png"
+                           WidthRequest="120"
+                           HeightRequest="180"
+                           Aspect="AspectFill" />
+                    <Image Source="movie3.png"
+                           WidthRequest="120"
+                           HeightRequest="180"
+                           Aspect="AspectFill" />
+                </HorizontalStackLayout>
+            </ScrollView>
 
-            <Button Grid.Row="4" Grid.Column="0" Text="4" FontSize="36" BackgroundColor="White" TextColor="DarkGray" Clicked="NumeroPresionado" />
-            <Button Grid.Row="4" Grid.Column="1" Text="5" FontSize="36" BackgroundColor="White" TextColor="DarkGray" Clicked="NumeroPresionado" />
-            <Button Grid.Row="4" Grid.Column="2" Text="6" FontSize="36" BackgroundColor="White" TextColor="DarkGray" Clicked="NumeroPresionado" />
-            <Button Grid.Row="4" Grid.Column="3" Text="-" FontSize="36" BackgroundColor="BlueViolet" TextColor="White" Clicked="OperadorPresionado" />
+            <!-- Sección: Películas más populares -->
+            <Label Text="Prime – Las películas más populares de Prime Video"
+                   TextColor="White"
+                   FontAttributes="Bold"
+                   FontSize="18"
+                   Margin="0,10,0,0" />
 
-            <Button Grid.Row="5" Grid.Column="0" Text="1" FontSize="36" BackgroundColor="White" TextColor="DarkGray" Clicked="NumeroPresionado" />
-            <Button Grid.Row="5" Grid.Column="1" Text="2" FontSize="36" BackgroundColor="White" TextColor="DarkGray" Clicked="NumeroPresionado" />
-            <Button Grid.Row="5" Grid.Column="2" Text="3" FontSize="36" BackgroundColor="White" TextColor="DarkGray" Clicked="NumeroPresionado" />
-            <Button Grid.Row="5" Grid.Column="3" Text="+" FontSize="36" BackgroundColor="BlueViolet" TextColor="White" Clicked="OperadorPresionado" />
+            <!-- Scroll horizontal de películas populares -->
+            <ScrollView Orientation="Horizontal">
+                <HorizontalStackLayout Spacing="10">
+                    <Image Source="movie4.png"
+                           WidthRequest="120"
+                           HeightRequest="180"
+                           Aspect="AspectFill" />
+                    <Image Source="movie5.png"
+                           WidthRequest="120"
+                           HeightRequest="180"
+                           Aspect="AspectFill" />
+                    <Image Source="movie6.png"
+                           WidthRequest="120"
+                           HeightRequest="180"
+                           Aspect="AspectFill" />
+                </HorizontalStackLayout>
+            </ScrollView>
 
-            <Button Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" Text="0" FontSize="36" BackgroundColor="White" TextColor="DarkGray" Clicked="NumeroPresionado" />
-            <Button Grid.Row="6" Grid.Column="3" Text="=" FontSize="36" BackgroundColor="BlueViolet" TextColor="White" Clicked="Calcular" />
-        </Grid>
+        </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
