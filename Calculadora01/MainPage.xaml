@@ -1,90 +1,239 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Calculadora01.MainPage"
-             Title="Prime Video"
-             BackgroundColor="Black">
-    <!-- Usamos un ScrollView principal para que todo sea desplazable -->
-    <ScrollView>
-        <VerticalStackLayout Padding="10" Spacing="10">
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Calculadora01.MainPage"
+    Title="Prime Video"
+    BackgroundColor="Black">
 
-            <!-- Menú Superior (Todo, Películas, Series) -->
+    <Grid RowDefinitions="Auto,*,Auto">
+
+        <!-- Fila 0: Header fijo -->
+        <VerticalStackLayout Grid.Row="0" Padding="10" Spacing="10" BackgroundColor="Black">
             <HorizontalStackLayout HorizontalOptions="CenterAndExpand" Spacing="20">
                 <Label Text="Todo" TextColor="White" FontSize="14" />
                 <Label Text="Películas" TextColor="White" FontSize="14" />
                 <Label Text="Series" TextColor="White" FontSize="14" />
             </HorizontalStackLayout>
+        </VerticalStackLayout>
 
-            <!-- Banner Superior -->
-            <Image x:Name="banner1" 
-                   Source="banner1.png" 
-                   Aspect="AspectFill" 
-                   HeightRequest="200" />
+        <!-- Fila 1: Contenido desplazable (vertical) -->
+        <ScrollView Grid.Row="1" Orientation="Vertical">
+            <VerticalStackLayout Padding="10" Spacing="10" BackgroundColor="Black">
 
-            <!-- Título del Banner -->
-            <Label Text="La otra BODA"
-                   TextColor="White"
-                   FontAttributes="Bold"
-                   FontSize="24"
-                   HorizontalOptions="Start" />
+                <!-- Carrusel principal: se mostrará bodas y otras películas -->
+                <CarouselView x:Name="carruselprincipal"
+                              HeightRequest="200"
+                              Margin="0,0,0,10"
+                              Loop="True">
+                    <!-- Indicador: se crea un punto por cada elemento del arreglo -->
+                    <CarouselView.IndicatorView>
+                        <IndicatorView x:Name="indicatorBoda"
+                                       IndicatorsShape="Circle"
+                                       IndicatorColor="Gray"
+                                       SelectedIndicatorColor="White"
+                                       HorizontalOptions="Center" />
+                    </CarouselView.IndicatorView>
 
-            <!-- Subtítulo (Ej: Período de prueba gratis) -->
-            <Label Text="Período de prueba gratis de Prime"
+                    <!-- Layout horizontal con pequeño espaciado -->
+                    <CarouselView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal" ItemSpacing="5" />
+                    </CarouselView.ItemsLayout>
+
+                    <!-- DataTemplate: se superpone el título sobre la imagen -->
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <!-- Imagen de fondo -->
+                                <Image Source="{Binding Image}"
+                                       Aspect="AspectFill" />
+                                <!-- Títulos superpuestos (fondo semitransparente) -->
+                                <StackLayout VerticalOptions="End"
+                                             BackgroundColor="#80000000"
+                                             Padding="10">
+                                    <Label Text="{Binding Title}"
+                                           FontSize="24"
+                                           TextColor="White"
+                                           HorizontalTextAlignment="Center" />
+                                    <Label Text="{Binding Title}"
+                                           FontSize="12"
+                                           TextColor="White"
+                                           HorizontalTextAlignment="Center" />
+                                </StackLayout>
+                            </Grid>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+
+                <!-- Sección: Prime – Películas que te recomendamos -->
+                <Label Text="Prime – Películas que te recomendamos"
+                       TextColor="White"
+                       FontSize="18"
+                       FontAttributes="Bold" />
+                <ScrollView Orientation="Horizontal">
+                    <HorizontalStackLayout Spacing="10">
+                        <!-- Elementos de ejemplo (estáticos) -->
+                        <VerticalStackLayout>
+                            <Image Source="movie2.png" Aspect="AspectFill" HeightRequest="100"/>
+                            <Label Text="Aventura Total"
+                                   TextColor="White"
+                                   HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout>
+                            <Image Source="movie3.png" Aspect="AspectFill" HeightRequest="100"/>
+                            <Label Text="El Camino Secreto"
+                                   TextColor="White"
+                                   HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout>
+                            <Image Source="movie4.png" Aspect="AspectFill" HeightRequest="100"/>
+                            <Label Text="Noche de Sorpresas"
+                                   TextColor="White"
+                                   HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout>
+                            <Image Source="movie5.png" Aspect="AspectFill" HeightRequest="100"/>
+                            <Label Text="La Gran Ciudad"
+                                   TextColor="White"
+                                   HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout>
+                            <Image Source="movie6.png" Aspect="AspectFill" HeightRequest="100"/>
+                            <Label Text="Un Viaje Inolvidable"
+                                   TextColor="White"
+                                   HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+                </ScrollView>
+
+                <!-- Sección: Prime – Las películas más populares -->
+                <Label Text="Prime – Las películas más populares"
+                       TextColor="White"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       Margin="0,10,0,0" />
+                <ScrollView Orientation="Horizontal">
+                    <HorizontalStackLayout Spacing="10">
+                        <VerticalStackLayout>
+                            <Image Source="movie3.png" Aspect="AspectFill" HeightRequest="100"/>
+                            <Label Text="El Retorno"
+                                   TextColor="White"
+                                   HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout>
+                            <Image Source="movie2.png" Aspect="AspectFill" HeightRequest="100"/>
+                            <Label Text="Aventura Bajo Cero"
+                                   TextColor="White"
+                                   HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout>
+                            <Image Source="movie6.png" Aspect="AspectFill" HeightRequest="100"/>
+                            <Label Text="La Última Misión"
+                                   TextColor="White"
+                                   HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout>
+                            <Image Source="movie4.png" Aspect="AspectFill" HeightRequest="100"/>
+                            <Label Text="Ecos del Tiempo"
+                                   TextColor="White"
+                                   HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout>
+                            <Image Source="movie5.png" Aspect="AspectFill" HeightRequest="100"/>
+                            <Label Text="Viaje Estelar"
+                                   TextColor="White"
+                                   HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+                </ScrollView>
+
+                <!-- Sección: Prime – Descubre más -->
+                <Label Text="Prime – Descubre más"
+                       TextColor="White"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       Margin="0,10,0,0" />
+                <ScrollView Orientation="Horizontal">
+                    <HorizontalStackLayout Spacing="10">
+                        <VerticalStackLayout>
+                            <Image Source="movie1.png" Aspect="AspectFill" HeightRequest="100"/>
+                            <Label Text="Camino al Horizonte"
+                                   TextColor="White"
+                                   HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout>
+                            <Image Source="movie2.png" Aspect="AspectFill" HeightRequest="100"/>
+                            <Label Text="Bajo la Luna"
+                                   TextColor="White"
+                                   HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout>
+                            <Image Source="movie3.png" Aspect="AspectFill" HeightRequest="100"/>
+                            <Label Text="El Gran Rescate"
+                                   TextColor="White"
+                                   HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout>
+                            <Image Source="movie4.png" Aspect="AspectFill" HeightRequest="100"/>
+                            <Label Text="Vuelta a Casa"
+                                   TextColor="White"
+                                   HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout>
+                            <Image Source="movie6.png" Aspect="AspectFill" HeightRequest="100"/>
+                            <Label Text="Encrucijada"
+                                   TextColor="White"
+                                   HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+                </ScrollView>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Fila 2: Footer fijo -->
+        <Grid Grid.Row="2" Padding="10" BackgroundColor="Black">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Botones de íconos -->
+            <ImageButton Grid.Row="0" Grid.Column="0" 
+                         Source="icon_inicio.png"
+                         BackgroundColor="Transparent"
+                         HeightRequest="30" WidthRequest="30"/>
+            <ImageButton Grid.Row="0" Grid.Column="1" 
+                         Source="icon_descarga.png"
+                         BackgroundColor="Transparent"
+                         HeightRequest="30" WidthRequest="30"/>
+            <ImageButton Grid.Row="0" Grid.Column="2" 
+                         Source="icon_buscar.png"
+                         BackgroundColor="Transparent"
+                         HeightRequest="30" WidthRequest="30"/>
+
+            <!-- Etiquetas debajo -->
+            <Label Grid.Row="1" Grid.Column="0" 
+                   Text="Inicio"
                    TextColor="White"
                    FontSize="12"
-                   HorizontalOptions="Start" />
-
-            <!-- Sección: Películas que te recomendamos -->
-            <Label Text="Prime – Películas que te recomendamos"
+                   HorizontalTextAlignment="Center" />
+            <Label Grid.Row="1" Grid.Column="1" 
+                   Text="Descargas"
                    TextColor="White"
-                   FontAttributes="Bold"
-                   FontSize="18"
-                   Margin="0,10,0,0" />
-
-            <!-- Scroll horizontal de recomendaciones -->
-            <ScrollView Orientation="Horizontal">
-                <HorizontalStackLayout Spacing="10">
-                    <!-- Sustituye cada Source con tu imagen real -->
-                    <Image Source="movie1.png"
-                           WidthRequest="120"
-                           HeightRequest="180"
-                           Aspect="AspectFill" />
-                    <Image Source="movie2.png"
-                           WidthRequest="120"
-                           HeightRequest="180"
-                           Aspect="AspectFill" />
-                    <Image Source="movie3.png"
-                           WidthRequest="120"
-                           HeightRequest="180"
-                           Aspect="AspectFill" />
-                </HorizontalStackLayout>
-            </ScrollView>
-
-            <!-- Sección: Películas más populares -->
-            <Label Text="Prime – Las películas más populares de Prime Video"
+                   FontSize="12"
+                   HorizontalTextAlignment="Center" />
+            <Label Grid.Row="1" Grid.Column="2" 
+                   Text="Buscar"
                    TextColor="White"
-                   FontAttributes="Bold"
-                   FontSize="18"
-                   Margin="0,10,0,0" />
+                   FontSize="12"
+                   HorizontalTextAlignment="Center" />
+        </Grid>
 
-            <!-- Scroll horizontal de películas populares -->
-            <ScrollView Orientation="Horizontal">
-                <HorizontalStackLayout Spacing="10">
-                    <Image Source="movie4.png"
-                           WidthRequest="120"
-                           HeightRequest="180"
-                           Aspect="AspectFill" />
-                    <Image Source="movie5.png"
-                           WidthRequest="120"
-                           HeightRequest="180"
-                           Aspect="AspectFill" />
-                    <Image Source="movie6.png"
-                           WidthRequest="120"
-                           HeightRequest="180"
-                           Aspect="AspectFill" />
-                </HorizontalStackLayout>
-            </ScrollView>
-
-        </VerticalStackLayout>
-    </ScrollView>
+    </Grid>
 </ContentPage>
